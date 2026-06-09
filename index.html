@@ -206,13 +206,8 @@ function renderAdmin(){
     var adres = val("adres");
     if(!adres){ show("err"); return; }
     var payload = {a:adres, p:val("postcode"), w:val("woonplaats"), e:val("email"), adv:val("adviseur")};
-    var longUrl = location.origin + location.pathname + "?w=" + encodeURIComponent(b64enc(payload));
-    document.getElementById("out").innerHTML = '<hr><p class="muted">Bezig met genereren\u2026</p>';
-    if(location.protocol === "file:"){ renderLinkOut(longUrl); return; }
-    fetch("https://da.gd/s?url=" + encodeURIComponent(longUrl))
-      .then(function(res){ return res.ok ? res.text() : Promise.reject(); })
-      .then(function(t){ t=(t||"").trim(); renderLinkOut(/^https?:\/\/\S+$/.test(t) ? t : longUrl); })
-      .catch(function(){ renderLinkOut(longUrl); });
+    var url = location.origin + location.pathname + "?w=" + encodeURIComponent(b64enc(payload));
+    renderLinkOut(url);
   };
 }
 
