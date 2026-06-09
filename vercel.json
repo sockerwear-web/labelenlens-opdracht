@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/app.js": { "includeFiles": "blank.pdf" }
+  },
+  "rewrites": [
+    { "source": "/woning/:code", "destination": "/index.html" }
+  ]
+}
